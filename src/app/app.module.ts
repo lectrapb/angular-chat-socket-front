@@ -10,6 +10,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { ComponentModule } from './components/component.module';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,

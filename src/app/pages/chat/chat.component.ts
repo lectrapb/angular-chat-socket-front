@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Client } from '@stomp/stompjs';
 import * as SockJS from 'sockjs-client';
 import { Message } from 'src/app/models/message';
+import { Constant } from '../../util/constant'
 
 
 
@@ -19,6 +20,17 @@ export class ChatComponent implements OnInit {
 
   message: Message = new Message();
   messages: Message[] = [];
+  writing: string ='';
+
+  getUserType():string{
+    return Constant.TYPE_NEW_USER;
+  }
+
+  getMessageType():string{
+    return Constant.TYPE_MESSAGE;
+  }
+ 
+ 
 
   constructor() { }
 
@@ -37,10 +49,29 @@ export class ChatComponent implements OnInit {
             
            let message: Message = JSON.parse(e.body) as Message;
            message.date = new Date(message.date);
+
+           if(!this.message.color && message.type == Constant.TYPE_NEW_USER
+              && this.message.username == message.username){
+                 this.message.color = message.color;
+              } 
+
            this.messages.push(message);
            console.log(message);
            
       });
+      //Escucha escritura
+      this.client.subscribe('/chat/escribiendo', e =>{
+            
+          this.writing = e.body;
+          setTimeout(() =>this.writing = '', 3000);
+        
+      });
+
+
+
+
+      this.message.type =  Constant.TYPE_NEW_USER;
+      this.client.publish({destination: '/app/mensage', body: JSON.stringify(this.message)});
     }
 
     this.client.onDisconnect = (frame) =>{
@@ -62,8 +93,13 @@ export class ChatComponent implements OnInit {
   }
 
   sendMessage(): void{
+     this.message.type = Constant.TYPE_MESSAGE;
      this.client.publish({destination: '/app/mensage', body: JSON.stringify(this.message)});
      this.message.text = '';
+  }
+
+  writingEvent():void{
+    this.client.publish({destination: '/app/escribiendo', body: this.message.username });
   }
 
 }
