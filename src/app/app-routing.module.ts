@@ -1,26 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './pages/home/home.component';
-import { ChatComponent } from './pages/chat/chat.component';
-import { LoginComponent } from './auth/login/login.component';
-import { PagesComponent } from './pages/pages.component';
+
+import { PagesRoutingModule } from './pages/pages-routing.module';
+import { AuthRoutingModule } from './auth/auth.routing';
 
 const routes: Routes = [
-  { path:'', 
-    component:PagesComponent,
-    children: [
-        
-      { path: 'home', component: HomeComponent},
-      { path: 'chat', component: ChatComponent},
-      { path: '', pathMatch:'full', redirectTo: 'home'}
-    ] 
-  },
-  { path: 'login', component: LoginComponent},
- 
+
+   // path: '/dashboard' PagesRouting
+   // path: '' AuthRouting
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes),
+    PagesRoutingModule,
+    AuthRoutingModule
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

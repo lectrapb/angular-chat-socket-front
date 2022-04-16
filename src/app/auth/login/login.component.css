@@ -1,5 +1,5 @@
 
-.bg{
+.bgImage{
 
     background-image: url(../../../assets/pngegg2.png);
     background-position: center center;
@@ -17,13 +17,13 @@
     border-bottom-right-radius: 15px; 
 }
 
-.base2{
+.base-login{
     background-color: #1c1c1c;
     color:white;   
     background-image: linear-gradient(to bottom right, red, rgb(166, 255, 0));
 }
 
-.element{
+.element-100{
     height: 100vh; /* For 100% screen height */
     width:  100vw; /* For 100% screen width */
     overflow: auto;

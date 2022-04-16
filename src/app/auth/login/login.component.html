@@ -1,10 +1,10 @@
 
-<div class="base2 element">
+<div class="base-login element-100">
 
     <div class="container pt-5">
           
             <div class="row align-items-stretch ">
-                <div class="col bg  d-none d-lg-block d-md-block ">
+                <div class="col bgImage  d-none d-lg-block d-md-block ">
     
                 </div>
                 <div class="col bg-white text-secondary round-right-side">
@@ -14,27 +14,48 @@
                      <h2 class="fw-bold text-center pt-5 mb-5">Welcome Chat Socket</h2>
     
                      <!--login-->
-                     <form action="#">
+                     <form 
+                           autocomplete="off"
+                           [formGroup]="loginForm"
+                           (ngSubmit)="login()">
                          <div class="mb-4">
                              <label for="email" class="form-label">Email</label>
-                             <input type="email" class="form-control" name="email">
+                             <input type="email" 
+                                    class="form-control" 
+                                    name="email"
+                                    placeholder="email"
+                                    formControlName="email">
                          </div>
                          <div class="mb-4">
-                            <label for="email" class="form-label">Password</label>
-                            <input type="password" class="form-control" name="password">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" 
+                                   class="form-control" 
+                                   name="password"
+                                   placeholder="password"
+                                   formControlName="password">
                          </div>
                          <div class="mb-4 form-check">
-                             <input type="checkbox" name="connected" class="form-check-input" id="">
-                             <label for="connected" class="form-check-label">Stay connected</label>
+                             <input type="checkbox" 
+                                    name="connected" 
+                                    class="form-check-input" 
+                                    formControlName="remember">
+                             <label for="connected" class="form-check-label">Remember Me</label>
+                         </div>
+
+                         <div class="row">
+                             <div class="col text-danger">
+                                 <p *ngIf="fieldInvalid('email')">* The email is mandatory</p>
+                                 <p *ngIf="fieldInvalid('password')">* The password is mandatory</p>
+                             </div>
                          </div>
     
                          <div class="d-grid">
-                             <button type="submit" class="btn btn-secondary">Init Session</button>
+                             <button type="submit" class="btn btn-secondary">LOG IN</button>
                          </div>
     
                          <div class="my-3">
                              <span> You don't have an account <a href="#">Register</a></span> <br>
-                             <span><a href="#">Password Recover</a></span>
+                             
                          </div>
                      </form>
     
