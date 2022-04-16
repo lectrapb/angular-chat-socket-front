@@ -1,9 +1,11 @@
-html, body{
-    background-color: #1c1c1c;
-    color:white;
+.basic{
+    background: #b2b1ae;
+    background: linear-gradient(to rigth, #a59280 ,#b2b1ae);
+
 }
 
-.base{
-    background-color: #1c1c1c;
-    color:white;
-}
+
+.main-container{
+    height: 100vh;
+  }
+  

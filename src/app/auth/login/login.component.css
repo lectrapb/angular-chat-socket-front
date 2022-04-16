@@ -1,0 +1,20 @@
+
+.bg{
+
+    background-image: url(../../../assets/chat.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    width: auto;
+    height: auto;
+} 
+
+.base2{
+    background-color: #1c1c1c;
+    color:white;   
+}
+
+.element{
+    height: 100vh; /* For 100% screen height */
+    width:  100vw; /* For 100% screen width */
+    overflow: auto;
+}

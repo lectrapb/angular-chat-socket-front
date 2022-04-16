@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {v4 as uuidv4} from 'uuid';
 import {Client } from '@stomp/stompjs';
 import * as SockJS from 'sockjs-client';
 import { Message } from 'src/app/models/message';
@@ -21,6 +22,7 @@ export class ChatComponent implements OnInit {
   message: Message = new Message();
   messages: Message[] = [];
   writing: string ='';
+  clientId: string = 'id-'+uuidv4();
 
   getUserType():string{
     return Constant.TYPE_NEW_USER;
@@ -32,7 +34,10 @@ export class ChatComponent implements OnInit {
  
  
 
-  constructor() { }
+  constructor() {
+
+      this.clientId = 'id-'+ new Date
+   }
 
   ngOnInit(){
 
@@ -67,7 +72,16 @@ export class ChatComponent implements OnInit {
         
       });
 
+      this.client.subscribe('/chat/historial/'+ this.clientId, e =>{
+         
+        const record = JSON.parse(e.body) as Message[];
+        this.messages = record.map( m =>{
+            m.date = new Date(m.date);
+            return m;
+        }).reverse();
+      });
 
+      this.client.publish({ destination: '/app/historial', body: this.clientId});
 
 
       this.message.type =  Constant.TYPE_NEW_USER;
@@ -77,6 +91,8 @@ export class ChatComponent implements OnInit {
     this.client.onDisconnect = (frame) =>{
       console.log(' Desconectados '+ !this.client.connected + ' : '+ frame); 
       this.connected = false;
+      this.message = new Message();
+      this.messages = [];
     }
    
   

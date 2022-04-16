@@ -8,6 +8,8 @@ import { AppComponent } from './app.component';
 import { ChatComponent } from './pages/chat/chat.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ComponentModule } from './components/component.module';
+import { LoginComponent } from './auth/login/login.component';
+import { PagesComponent } from './pages/pages.component';
 
 
 
@@ -15,7 +17,9 @@ import { ComponentModule } from './components/component.module';
   declarations: [
     AppComponent,
     ChatComponent,
-    HomeComponent
+    HomeComponent,
+    LoginComponent,
+    PagesComponent
   ],
   imports: [
     BrowserModule,
