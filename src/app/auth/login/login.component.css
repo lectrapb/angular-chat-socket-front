@@ -1,16 +1,26 @@
 
 .bg{
 
-    background-image: url(../../../assets/chat.png);
+    background-image: url(../../../assets/pngegg2.png);
     background-position: center center;
     background-repeat: no-repeat;
     width: auto;
     height: auto;
+    background-color: #577e83;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    
 } 
+
+.round-right-side{
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px; 
+}
 
 .base2{
     background-color: #1c1c1c;
     color:white;   
+    background-image: linear-gradient(to bottom right, red, rgb(166, 255, 0));
 }
 
 .element{
