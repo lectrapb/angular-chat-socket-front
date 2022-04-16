@@ -94,6 +94,7 @@ export class ChatComponent implements OnInit {
       console.log(' Desconectados '+ !this.client.connected + ' : '+ frame); 
       this.connected = false;
       this.message = new Message();
+      this.message.username = localStorage.getItem(Constant.LS_USER_NAME) || '';
       this.messages = [];
     }
    
@@ -108,6 +109,7 @@ export class ChatComponent implements OnInit {
   closeConnection(){
 
     this.client.deactivate();
+  
   }
 
   sendMessage(): void{

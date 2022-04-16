@@ -3,7 +3,7 @@
      <ul class="nav nav-pills card-header-pills">
          <li class="nav-item me-2"
             *ngIf="!connected">
-            <input type="text" [(ngModel)]="message.username" class="form-control" placeholder="Your username" name="username">
+            <input type="text" [(ngModel)]="message.username" class="form-control" placeholder="Your username" name="username" readonly>
          </li>
          <li class="nav-item me-2">
              <button class="btn btn-success" 
