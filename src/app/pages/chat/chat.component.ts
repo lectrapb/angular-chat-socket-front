@@ -41,6 +41,8 @@ export class ChatComponent implements OnInit {
 
   ngOnInit(){
 
+    this.message.username = localStorage.getItem(Constant.LS_USER_NAME) || '';
+
     this.client.webSocketFactory = function(){
        
          return new SockJS("http://localhost:8080/chat-websocket");
@@ -71,7 +73,7 @@ export class ChatComponent implements OnInit {
           setTimeout(() =>this.writing = '', 3000);
         
       });
-
+      //Lee historial
       this.client.subscribe('/chat/historial/'+ this.clientId, e =>{
          
         const record = JSON.parse(e.body) as Message[];
@@ -80,7 +82,7 @@ export class ChatComponent implements OnInit {
             return m;
         }).reverse();
       });
-
+      //Envia solicitud historial 
       this.client.publish({ destination: '/app/historial', body: this.clientId});
 
 

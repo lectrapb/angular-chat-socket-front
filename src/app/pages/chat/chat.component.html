@@ -25,6 +25,7 @@
         *ngIf="connected">
         <ul class="list-group list-group-flush">
            <li class="list-group-item list-group-item-light" *ngFor="let message of messages">
+            <span><img src="assets/pngegg2.png" alt="" width="30" height=""></span>
             <span *ngIf="message.type== getUserType()">
                   {{message.date |date: 'shortTime'}} @ {{message.text}} 
                   <span [ngStyle]="{'color':message.color}">{{message.username}}</span> 
